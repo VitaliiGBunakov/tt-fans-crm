@@ -15,4 +15,8 @@ export class UsersController {
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
   }
+  @Get('get-user-full/:username')
+  getFullUser(@Param('username') username: string) {
+    return this.usersService.getFullUserByUsername(username);
+  }
 }
