@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { AuthGuard } from '../../auth/auth.guard';
 
 @Controller('')
 export class UsersController {
@@ -15,6 +16,7 @@ export class UsersController {
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(+id);
   }
+  @UseGuards(AuthGuard)
   @Get('get-user-full/:username')
   getFullUser(@Param('username') username: string) {
     return this.usersService.getFullUserByUsername(username);
