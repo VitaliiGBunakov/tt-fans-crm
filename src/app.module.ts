@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { UsersModule } from './modules/users/users.module';
+import { AuthModule } from './auth/auth.module';
+import { UtilitiesModule } from './modules/utilities/utilities.module';
 
 @Module({
   imports: [
@@ -19,9 +21,11 @@ import { UsersModule } from './modules/users/users.module';
       database: process.env.DB_DATABASE || 'test',
       models: [],
       autoLoadModels: true,
-      // synchronize: true,
+      synchronize: true,
     }),
     UsersModule,
+    AuthModule,
+    UtilitiesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
